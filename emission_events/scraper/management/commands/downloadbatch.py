@@ -2,18 +2,7 @@ from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
 from scraper.url_builder import URLBuilder
 from scraper.downloader import Downloader
-
-
-class HTMLGetter(object):
-    def __init__(self, url_builder):
-        self.url_builder = url_builder
-
-    def __call__(self):
-        while not self.url_builder.is_finalized():
-            downloader = Downloader(
-                self.url_builder.next(),
-                self.url_builder.current)
-            downloader()
+from scraper.html_getter import HTMLGetter
 
 
 class Command(BaseCommand):
