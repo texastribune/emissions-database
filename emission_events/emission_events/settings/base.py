@@ -96,14 +96,20 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(SITE_DIR, 'logs/debug.log'),
+            'formatter': 'default',
+            'filename': os.path.join(SITE_DIR, 'logs/debug.log')
         },
+    },
+    'formatters': {
+        'default': {
+            'format': '%(levelname)s %(asctime)s | %(message)s'
+        }
     },
     'loggers': {
         'django.request': {
             'handlers': ['file'],
             'level': 'DEBUG',
-            'propagate': True,
+            'propagate': True
         },
         'emissions_downloader':{
             'handlers': ['file'],
