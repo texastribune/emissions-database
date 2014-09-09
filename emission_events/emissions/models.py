@@ -32,7 +32,7 @@ class PageHTML(models.Model):
 
 
 class RequestAttempt(models.Model):
-    tracking_number = models.IntegerField(null=False,unique=True)
+    tracking_number = models.IntegerField(null=False)
     request_date = models.DateTimeField(auto_now=True)
     message = models.CharField(max_length=200)
     status_code = models.CharField(max_length=200)
