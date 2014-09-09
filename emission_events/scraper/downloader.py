@@ -2,6 +2,8 @@ import urllib2
 import logging
 from emissions.models import PageHTML, RequestAttempt
 
+logger = logging.getLogger('emissions_downloader')
+
 
 class Downloader(object):
     def __init__(self, url, tracking_number):
@@ -18,12 +20,12 @@ class Downloader(object):
         try:
             response = urllib2.urlopen(self.url)
             html = response.read()
-            logging.info("Getting %i" % self.tracking_number)
+            logger.info("Getting %i" % self.tracking_number)
             self.store_page(html)
             self.store_attempt("%i downloaded." % self.tracking_number, failed=False)
             return True
         except (urllib2.URLError, urllib2.HTTPError) as e:
-            logging.error("Fail %i | %s" % (self.tracking_number, str(e)))
+            logger.error("Fail %i | %s" % (self.tracking_number, str(e)))
             self.store_attempt(str(e), failed=True)
             return False
 

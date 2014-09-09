@@ -105,6 +105,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'emissions_downloader':{
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     },
 }
 
