@@ -85,6 +85,28 @@ DATABASES = {
     }
 }
 
+#########################
+# LOGGING CONFIGURATION #
+#########################
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(SITE_DIR, 'logs/debug.log'),
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 #####################
 # URL CONFIGURATION #
