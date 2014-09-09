@@ -1,7 +1,6 @@
 from django.core.management.base import NoArgsCommand
 from emissions.models import PageHTML
 from scraper.url_builder import URLBuilder
-from scraper.downloader import Downloader
 from scraper.html_getter import HTMLGetter
 
 

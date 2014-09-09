@@ -1,7 +1,6 @@
 from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
 from scraper.url_builder import URLBuilder
-from scraper.downloader import Downloader
 from scraper.html_getter import HTMLGetter
 
 

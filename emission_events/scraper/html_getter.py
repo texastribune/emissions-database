@@ -1,3 +1,6 @@
+from scraper.downloader import Downloader
+
+
 class HTMLGetter(object):
     def __init__(self, url_builder):
         self.url_builder = url_builder
