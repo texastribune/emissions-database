@@ -1,0 +1,26 @@
+# Python things
+*.py[co]
+*.egg*
+
+# Node things
+node_modules
+
+# SQLite3 things
+*.db
+
+# Logs
+*.log
+
+# OSX Things
+.DS_Store
+._*
+
+# CSS things
+emission_events/static/css/*.css*
+
+# SASS things
+.sass-cache/
+
+# Django things
+emission_events/media/
+emission_events/assets/
