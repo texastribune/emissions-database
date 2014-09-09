@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
             name='RequestAttempt',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('tracking_number', models.IntegerField(unique=True)),
+                ('tracking_number', models.IntegerField()),
                 ('request_date', models.DateTimeField(auto_now=True)),
                 ('message', models.CharField(max_length=200)),
                 ('status_code', models.CharField(max_length=200)),
