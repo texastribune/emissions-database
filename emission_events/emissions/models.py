@@ -36,4 +36,4 @@ class RequestAttempt(models.Model):
     request_date = models.DateTimeField(auto_now=True)
     message = models.CharField(max_length=200)
     status_code = models.CharField(max_length=200)
-    failed = models.BooleanField()
+    failed = models.BooleanField(default=False)
