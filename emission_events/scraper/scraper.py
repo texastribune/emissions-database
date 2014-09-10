@@ -33,7 +33,8 @@ class Scraper(object):
             'county':     self.get_county(tds[3].string),
             'began_date': began_date,
             'ended_date': ended_date,
-            'duration':   self.get_duration(began_date, ended_date)
+            'duration':   self.get_duration(began_date, ended_date),
+            'dc_date': self.parse_date(self.get_dc_date_meta(metas))
         }
 
     def clean(self, cad, limit=200):
@@ -68,12 +69,8 @@ class Scraper(object):
     def parse_date(self, cad):
         try:
             if len(cad.split()) == 2:
-                print "parsing " + cad
-                print datetime.strptime(cad, "%m/%d/%Y %I:%M%p")
                 return datetime.strptime(cad, "%m/%d/%Y %I:%M%p")
             else:
-                print "parsing (short) " + cad
-                print datetime.strptime(cad, "%m/%d/%Y")
                 return datetime.strptime(cad, "%m/%d/%Y")
         except ValueError:
             print "fallo: " + cad
