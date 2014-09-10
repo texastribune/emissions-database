@@ -3,7 +3,7 @@ from django.db import models
 
 class EmissionEvent(models.Model):
     tracking_number = models.IntegerField(null=False,unique=True)
-    dc_date_meta = models.CharField(max_length=20)
+    dc_date_meta = models.CharField(max_length=20, null=True)
     # Regulated entity name
     regulated_entity_name = models.CharField(max_length=30)
     # Physical location
@@ -28,12 +28,12 @@ class EmissionEvent(models.Model):
     emissions_estimation_method = models.TextField()
 
     # Curated fields
-    dc_date = models.DateField()
-    city = models.CharField(max_length=200, db_index=True)
-    county = models.CharField(max_length=200, db_index=True)
-    began_date = models.DateTimeField(db_index=True)
-    ended_date = models.DateTimeField(db_index=True)
-    duration = models.FloatField() # in hours
+    dc_date = models.DateField(null=True)
+    city = models.CharField(max_length=200, db_index=True, null=True)
+    county = models.CharField(max_length=200, db_index=True, null=True)
+    began_date = models.DateTimeField(db_index=True, null=True)
+    ended_date = models.DateTimeField(db_index=True, null=True)
+    duration = models.FloatField(null=True) # in hours
 
 
 class PageHTML(models.Model):
