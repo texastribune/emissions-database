@@ -5,7 +5,7 @@ from scraper.html_getter import HTMLGetter
 
 
 class Command(NoArgsCommand):
-    help = "Print a cliche to the console."
+    help = "Download the following 100 emission events."
 
     def handle_noargs(self, **options):
         page = PageHTML.objects.order_by('-tracking_number')[0]
