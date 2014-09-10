@@ -1,5 +1,4 @@
 # This file is here because many Platforms-as-a-Service look for
 # requirements.txt in the root directory of a project.
 
-psycopg2
 -r requirements/production.txt
