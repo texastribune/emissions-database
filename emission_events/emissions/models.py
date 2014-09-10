@@ -1,29 +1,39 @@
 from django.db import models
 
+
 class EmissionEvent(models.Model):
     tracking_number = models.IntegerField(null=False,unique=True)
+    dc_date_meta = models.CharField(max_length=20)
     # Regulated entity name
-    regulated_entity_name = models.CharField(max_length=200)
+    regulated_entity_name = models.CharField(max_length=30)
     # Physical location
     physical_location = models.TextField()
     # Regulated entity RN number
-    regulated_entity_rn_number = models.CharField(max_length=200)
+    regulated_entity_rn_number = models.CharField(max_length=50)
     # City, County
-    city_county = models.CharField(max_length=200)
+    city_county = models.CharField(max_length=50)
     # Type(s) of air emissions event:
-    type_of_air_emissions_event = models.CharField(max_length=200)
+    type_of_air_emissions_event = models.CharField(max_length=200, db_index=True)
     # This is based on the:
-    based_on_the = models.CharField(max_length=200)
+    based_on_the = models.CharField(max_length=50)
     # Event began:
-    event_began = models.CharField(max_length=200)
+    event_began = models.CharField(max_length=30)
     # Event ended:
-    event_ended = models.CharField(max_length=200)
+    event_ended = models.CharField(max_length=30)
     # Cause
     cause = models.TextField()
     # Action taken
     action_taken = models.TextField()
     # Emissions estimation method
     emissions_estimation_method = models.TextField()
+
+    # Curated fields
+    dc_date = models.DateField()
+    city = models.CharField(max_length=200, db_index=True)
+    county = models.CharField(max_length=200, db_index=True)
+    began_date = models.DateTimeField(db_index=True)
+    ended_date = models.DateTimeField(db_index=True)
+    duration = models.FloatField() # in hours
 
 
 class PageHTML(models.Model):
