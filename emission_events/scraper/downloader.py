@@ -20,7 +20,7 @@ class Downloader(object):
         try:
             response = urllib2.urlopen(self.url)
             html = response.read()
-            logger.info("Getting %i" % self.tracking_number)
+            logger.info("Getting %i (%s)" % (self.tracking_number, self.url))
             self.store_page(html)
             self.store_attempt("%i downloaded." % self.tracking_number, failed=False)
             return True

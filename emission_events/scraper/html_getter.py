@@ -1,4 +1,4 @@
-from scraper.downloader import Downloader
+from downloader import Downloader
 
 
 class HTMLGetter(object):
@@ -7,7 +7,10 @@ class HTMLGetter(object):
 
     def __call__(self):
         while not self.url_builder.is_finalized():
+            self.url_builder.next()
+
             downloader = Downloader(
-                self.url_builder.next(),
-                self.url_builder.current)
+                self.url_builder.current_url(),
+                self.url_builder.current_tracking_number()
+            )
             downloader()
