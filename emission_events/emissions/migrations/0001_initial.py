@@ -11,6 +11,23 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='ContaminantReleased',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('tracking_number', models.IntegerField()),
+                ('contaminant', models.CharField(max_length=100)),
+                ('authorization', models.CharField(max_length=200)),
+                ('limit', models.CharField(max_length=100)),
+                ('amount_released', models.CharField(max_length=200)),
+                ('contaminant_parameterized', models.CharField(max_length=100, db_index=True)),
+                ('limit_lbs', models.FloatField(null=True)),
+                ('amount_released_lbs', models.FloatField(null=True)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='EmissionEvent',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -67,6 +84,12 @@ class Migration(migrations.Migration):
             model_name='emissionevent',
             name='page_html',
             field=models.ForeignKey(to='emissions.PageHTML'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='contaminantreleased',
+            name='emission_event',
+            field=models.ForeignKey(to='emissions.EmissionEvent'),
             preserve_default=True,
         ),
     ]

@@ -44,6 +44,24 @@ class EmissionEvent(models.Model):
     page_html = models.ForeignKey(PageHTML)
 
 
+class ContaminantReleased(models.Model):
+    tracking_number = models.IntegerField(null=False)
+
+    # Relations
+    emission_event = models.ForeignKey(EmissionEvent)
+
+    # Original values
+    contaminant = models.CharField(max_length=100)
+    authorization = models.CharField(max_length=200)
+    limit = models.CharField(max_length=100)
+    amount_released = models.CharField(max_length=200)
+
+    # Curated fields
+    contaminant_parameterized = models.CharField(max_length=100, db_index=True)
+    limit_lbs = models.FloatField(null=True)
+    amount_released_lbs = models.FloatField(null=True)
+
+
 class RequestAttempt(models.Model):
     tracking_number = models.IntegerField(null=False)
     request_date = models.DateTimeField(auto_now=True)
