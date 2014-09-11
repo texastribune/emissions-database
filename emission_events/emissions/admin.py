@@ -5,6 +5,7 @@ from emissions.models import PageHTML, EmissionEvent, RequestAttempt,\
 
 class EmissionEventAdmin(admin.ModelAdmin):
     list_display = ['tracking_number', 'type_of_emission', 'duration']
+    list_filter = ['type_of_emission', 'county']
     fieldsets = [
         ('Tracking Number', {'fields': ['tracking_number']}),
         ('Curated', {'fields': [
@@ -33,6 +34,7 @@ class EmissionEventAdmin(admin.ModelAdmin):
 
 class ContaminantReleasedAdmin(admin.ModelAdmin):
     list_display = ['contaminant_parameterized', 'tracking_number', 'authorization']
+    list_filter = ['contaminant_parameterized']
     fieldsets = [
         ('Curated', {'fields': [
             'contaminant_parameterized',
