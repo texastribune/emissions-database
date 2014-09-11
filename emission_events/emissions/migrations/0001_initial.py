@@ -63,4 +63,10 @@ class Migration(migrations.Migration):
             },
             bases=(models.Model,),
         ),
+        migrations.AddField(
+            model_name='emissionevent',
+            name='page_html',
+            field=models.ForeignKey(to='emissions.PageHTML'),
+            preserve_default=True,
+        ),
     ]

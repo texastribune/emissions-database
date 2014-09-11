@@ -18,4 +18,5 @@ class HTMLGetter(object):
             if downloader():
                 page_html = downloader.page_html
                 output = Scraper(page_html.content, page_html.tracking_number)()
+                output['page_html'] = page_html
                 EmissionEvent.objects.create(**output)

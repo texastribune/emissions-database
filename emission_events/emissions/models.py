@@ -1,6 +1,11 @@
 from django.db import models
 
 
+class PageHTML(models.Model):
+    tracking_number = models.IntegerField(null=False,unique=True)
+    content         = models.TextField()
+
+
 class EmissionEvent(models.Model):
     tracking_number = models.IntegerField(null=False,unique=True)
     dc_date_meta = models.CharField(max_length=20, null=True)
@@ -35,10 +40,8 @@ class EmissionEvent(models.Model):
     ended_date = models.DateTimeField(db_index=True, null=True)
     duration = models.FloatField(null=True) # in hours
 
-
-class PageHTML(models.Model):
-    tracking_number = models.IntegerField(null=False,unique=True)
-    content         = models.TextField()
+    # Relations
+    page_html = models.ForeignKey(PageHTML)
 
 
 class RequestAttempt(models.Model):
