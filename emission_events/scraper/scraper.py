@@ -1,5 +1,10 @@
+import django
+import logging
 from datetime import datetime
 from bs4 import BeautifulSoup
+
+
+logger = logging.getLogger('emissions_downloader')
 
 
 class Scraper(object):
@@ -33,8 +38,7 @@ class Scraper(object):
             'county':     self.get_county(tds[3].string),
             'began_date': began_date,
             'ended_date': ended_date,
-            'duration':   self.get_duration(began_date, ended_date),
-            'dc_date': self.parse_date(self.get_dc_date_meta(metas))
+            'duration':   self.get_duration(began_date, ended_date)
         }
 
     def clean(self, cad, limit=200):
@@ -67,13 +71,17 @@ class Scraper(object):
             return county
 
     def parse_date(self, cad):
+        cad = ' '.join(cad.split())
+        time_zone = django.utils.timezone.get_current_timezone()
         try:
             if len(cad.split()) == 2:
-                return datetime.strptime(cad, "%m/%d/%Y %I:%M%p")
+                dt = datetime.strptime(cad, "%m/%d/%Y %I:%M%p")
+                return time_zone.localize(dt)
             else:
-                return datetime.strptime(cad, "%m/%d/%Y")
+                dt = datetime.strptime(cad, "%m/%d/%Y")
+                return time_zone.localize(dt)
         except ValueError:
-            print "fallo: " + cad
+            logger.error("Parsing date on %i | %s" % (self.tracking_number, cad))
             return None
 
     def get_duration(self, begin, end):
