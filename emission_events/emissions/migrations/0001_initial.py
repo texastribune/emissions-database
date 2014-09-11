@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('physical_location', models.TextField()),
                 ('regulated_entity_rn_number', models.CharField(max_length=50)),
                 ('city_county', models.CharField(max_length=50)),
-                ('type_of_air_emissions_event', models.CharField(max_length=200, db_index=True)),
+                ('type_of_air_emissions_event', models.CharField(max_length=200)),
                 ('based_on_the', models.CharField(max_length=50)),
                 ('event_began', models.CharField(max_length=30)),
                 ('event_ended', models.CharField(max_length=30)),
@@ -50,6 +50,7 @@ class Migration(migrations.Migration):
                 ('began_date', models.DateTimeField(null=True, db_index=True)),
                 ('ended_date', models.DateTimeField(null=True, db_index=True)),
                 ('duration', models.FloatField(null=True)),
+                ('type_of_emission', models.CharField(max_length=30, db_index=True)),
             ],
             options={
             },

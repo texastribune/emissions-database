@@ -4,12 +4,13 @@ from emissions.models import PageHTML, EmissionEvent, RequestAttempt,\
 
 
 class EmissionEventAdmin(admin.ModelAdmin):
-    list_display = ['tracking_number', 'county', 'began_date']
+    list_display = ['tracking_number', 'type_of_emission', 'duration']
     fieldsets = [
         ('Tracking Number', {'fields': ['tracking_number']}),
         ('Curated', {'fields': [
             'county',
             'city',
+            'type_of_emission',
             'dc_date',
             'began_date',
             'ended_date',

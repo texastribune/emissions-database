@@ -43,7 +43,8 @@ class Scraper(object):
             'county':     self.get_county(tds[3].string),
             'began_date': began_date,
             'ended_date': ended_date,
-            'duration':   self.get_duration(began_date, ended_date)
+            'duration':   self.get_duration(began_date, ended_date),
+            'type_of_emission': self.parameterize(tds[4].string)
         }
 
     def has_contaminants(self):

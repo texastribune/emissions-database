@@ -18,7 +18,7 @@ class EmissionEvent(models.Model):
     # City, County
     city_county = models.CharField(max_length=50)
     # Type(s) of air emissions event:
-    type_of_air_emissions_event = models.CharField(max_length=200, db_index=True)
+    type_of_air_emissions_event = models.CharField(max_length=200)
     # This is based on the:
     based_on_the = models.CharField(max_length=50)
     # Event began:
@@ -39,6 +39,7 @@ class EmissionEvent(models.Model):
     began_date = models.DateTimeField(db_index=True, null=True)
     ended_date = models.DateTimeField(db_index=True, null=True)
     duration = models.FloatField(null=True) # in hours
+    type_of_emission = models.CharField(max_length=30, db_index=True)
 
     # Relations
     page_html = models.ForeignKey(PageHTML)
