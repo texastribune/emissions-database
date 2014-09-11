@@ -1,10 +1,13 @@
+import re
 import django
 import logging
+import inflection
 from datetime import datetime
 from bs4 import BeautifulSoup
 
 
 logger = logging.getLogger('emissions_downloader')
+logger_conversions = logging.getLogger('conversions')
 
 
 class Scraper(object):
@@ -12,8 +15,10 @@ class Scraper(object):
         self.html = html
         self.soup = BeautifulSoup(html)
         self.tracking_number = tracking_number
+        self.lbs_regex = re.compile(r"lbs$|lbs\s")
+        self.float_regex = re.compile(r"(\d+\.\d+)|(\d+)")
 
-    def __call__(self):
+    def emission_event_data(self):
         tds = self.soup.table.find_all('td')
         metas = self.soup.find_all('meta')
         began_date = self.parse_date(tds[5].string.strip())
@@ -41,11 +46,50 @@ class Scraper(object):
             'duration':   self.get_duration(began_date, ended_date)
         }
 
+    def has_contaminants(self):
+        return len(self.soup.find_all('table')) > 1
+
+    def contaminants(self):
+        contaminants = []
+        for table in self.soup.find_all('table')[1:]:
+            for tr in table.find_all('tr')[1:]:
+                tds = tr.find_all('td')
+                contaminants.append({
+                    'tracking_number': self.tracking_number,
+                    'contaminant': self.clean(tds[0].string, 100),
+                    'authorization': self.clean(tds[1].string),
+                    'limit': self.clean(tds[2].string),
+                    'amount_released': self.clean(tds[3].string),
+                    'contaminant_parameterized': self.parameterize(tds[0].string),
+                    'limit_lbs': self.get_lbs(tds[2].string),
+                    'amount_released_lbs': self.get_lbs(tds[3].string)
+                   })
+        return contaminants
+
     def clean(self, cad, limit=200):
         if cad == None:
             return ''
         else:
             return cad.strip()[0:limit]
+
+    def parameterize(self, cad):
+        return inflection.parameterize(cad)
+
+    def get_lbs(self, cad):
+        cad = cad.strip().lower()
+        if cad.strip() == '0.0':
+            return 0.0
+        elif self.lbs_regex.search(cad):
+            try:
+                value = float(self.float_regex.search(cad).group())
+                logger_conversions.info("%s | %s : %f " % (self.tracking_number, cad, value))
+                return value
+            except:
+                logger_conversions.error("%s | %s was not parsed!" % (self.tracking_number, cad))
+                return None
+        else:
+            logger_conversions.error("%s | %s did not match" % (self.tracking_number, cad))
+            return None
 
     def get_dc_date_meta(self, metas):
         for meta in metas:
