@@ -1,4 +1,4 @@
-from emissions.models import EmissionEvent
+from emissions.models import EmissionEvent, ContaminantReleased
 from downloader import Downloader
 from scraper import Scraper
 
@@ -17,6 +17,13 @@ class HTMLGetter(object):
             )
             if downloader():
                 page_html = downloader.page_html
-                output = Scraper(page_html.content, page_html.tracking_number)()
-                output['page_html'] = page_html
-                EmissionEvent.objects.create(**output)
+                scraper = Scraper(page_html.content, page_html.tracking_number)
+                emission_event_data = scraper.emission_event_data()
+                emission_event_data['page_html'] = page_html
+
+                emission_event = EmissionEvent.objects.create(**emission_event_data)
+
+                if scraper.has_contaminants():
+                    for contaminant_data in scraper.contaminants():
+                        contaminant_data['emission_event'] = emission_event
+                        ContaminantReleased.objects.create(**contaminant_data)
