@@ -17,6 +17,7 @@ class Scraper(object):
         self.tracking_number = tracking_number
         self.lbs_regex = re.compile(r"lbs$|lbs\s")
         self.float_regex = re.compile(r"(\d+\.\d+)|(\d+)")
+        self.percentage_regex = re.compile(r"%")
 
     def emission_event_data(self):
         tds = self.soup.table.find_all('td')
@@ -63,7 +64,9 @@ class Scraper(object):
                     'amount_released': self.clean(tds[3].string),
                     'contaminant_parameterized': self.parameterize(tds[0].string),
                     'limit_lbs': self.get_lbs(tds[2].string),
-                    'amount_released_lbs': self.get_lbs(tds[3].string)
+                    'amount_released_lbs': self.get_lbs(tds[3].string),
+                    'limit_op': self.get_opacity(tds[2].string),
+                    'amount_released_op': self.get_opacity(tds[3].string)
                    })
         return contaminants
 
@@ -76,9 +79,23 @@ class Scraper(object):
     def parameterize(self, cad):
         return inflection.parameterize(cad)
 
+    def get_opacity(self, cad):
+        cad = cad.strip().lower()
+        if self.percentage_regex.search(cad):
+            try:
+                value = float(self.float_regex.search(cad).group())
+                logger_conversions.info("OPACITY - %s | %s : %f " % (self.tracking_number, cad, value))
+                return value
+            except:
+                logger_conversions.error("OPACITY - %s | %s was not parsed!" % (self.tracking_number, cad))
+                return None
+        else:
+            logger_conversions.error("OPACITY - %s | %s did not match" % (self.tracking_number, cad))
+            return None
+
     def get_lbs(self, cad):
         cad = cad.strip().lower()
-        if cad.strip() == '0.0':
+        if cad == '0.0':
             return 0.0
         elif self.lbs_regex.search(cad):
             try:

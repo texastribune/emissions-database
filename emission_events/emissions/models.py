@@ -61,6 +61,8 @@ class ContaminantReleased(models.Model):
     contaminant_parameterized = models.CharField(max_length=100, db_index=True)
     limit_lbs = models.FloatField(null=True)
     amount_released_lbs = models.FloatField(null=True)
+    limit_op = models.FloatField(null=True)
+    amount_released_op = models.FloatField(null=True)
 
 
 class RequestAttempt(models.Model):
