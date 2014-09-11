@@ -99,6 +99,12 @@ LOGGING = {
             'formatter': 'default',
             'filename': os.path.join(SITE_DIR, 'logs/debug.log')
         },
+        'conversions': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'default',
+            'filename': os.path.join(SITE_DIR, 'logs/conversions.log')
+        }
     },
     'formatters': {
         'default': {
@@ -116,6 +122,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'conversions': {
+            'handlers': ['conversions'],
+            'level': 'DEBUG',
+            'propagate': True,
+        }
     },
 }
 

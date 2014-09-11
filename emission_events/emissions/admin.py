@@ -1,5 +1,6 @@
 from django.contrib import admin
-from emissions.models import PageHTML, EmissionEvent, RequestAttempt
+from emissions.models import PageHTML, EmissionEvent, RequestAttempt,\
+                            ContaminantReleased
 
 
 class EmissionEventAdmin(admin.ModelAdmin):
@@ -29,6 +30,23 @@ class EmissionEventAdmin(admin.ModelAdmin):
             ]})
     ]
 
+class ContaminantReleasedAdmin(admin.ModelAdmin):
+    list_display = ['contaminant_parameterized', 'tracking_number']
+    fieldsets = [
+        ('Curated', {'fields': [
+            'contaminant_parameterized',
+            'limit_lbs',
+            'amount_released_lbs',
+            'tracking_number'
+            ]}),
+        ('HTML', {'fields': [
+            'contaminant',
+            'authorization',
+            'limit',
+            'amount_released'
+            ]})
+    ]
+
 class PageHTMLAdmin(admin.ModelAdmin):
     list_display = ['tracking_number']
 
@@ -36,3 +54,4 @@ class PageHTMLAdmin(admin.ModelAdmin):
 admin.site.register(PageHTML, PageHTMLAdmin)
 admin.site.register(EmissionEvent, EmissionEventAdmin)
 admin.site.register(RequestAttempt)
+admin.site.register(ContaminantReleased, ContaminantReleasedAdmin)
