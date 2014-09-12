@@ -77,7 +77,7 @@ class Scraper(object):
             return cad.strip()[0:limit]
 
     def parameterize(self, cad):
-        return inflection.parameterize(cad)
+        return inflection.parameterize(unicode(cad))
 
     def get_opacity(self, cad):
         cad = cad.strip().lower()
