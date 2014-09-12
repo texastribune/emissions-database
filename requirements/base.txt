@@ -2,4 +2,5 @@ Django==1.7
 psycopg2
 beautifulsoup4
 inflection
+pytz
 whitenoise==1.0.3
