@@ -3,7 +3,7 @@
 *.egg*
 
 # Vendor
-/vendor
+/webapp/vendor
 
 # Node things
 node_modules

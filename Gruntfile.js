@@ -19,18 +19,22 @@ module.exports = function(grunt) {
         src: [
           './vendor/bower/jquery/dist/jquery.min.js',
           './vendor/bower/underscore/underscore-min.js',
-          './emission_events/static/scripts/{,*/}*.js'
+          './webapp/js/{,*/}*.js'
         ],
         dest: './emission_events/static/js/app.js',
       },
     },
 
     sass: {
+      options: {
+        loadPath: ['vendor/bower']
+      },
       dist: {
         files: {
-          './emission_events/static/css/app.css': './emission_events/static/scss/app.scss'
+          './emission_events/static/css/app.css': './webapp/scss/app.scss'
         }
       }
+
     },
 
     jshint: {
@@ -39,17 +43,17 @@ module.exports = function(grunt) {
         reporter: require('jshint-stylish')
       },
       all: [
-        'emission_events/static/scripts/{,*/}*.js'
+        'webapp/js/{,*/}*.js'
       ]
     },
 
     watch: {
       sass: {
-        files: ['emission_events/static/scss/**/*.scss'],
+        files: ['webapp/scss/**/*.scss'],
         tasks: ['sass']
       },
       js: {
-        files: ['emission_events/static/scripts/{,*/}*.js'],
+        files: ['webapp/js/{,*/}*.js'],
         tasks: ['jshint', 'concat']
       },
     }
@@ -58,5 +62,5 @@ module.exports = function(grunt) {
   grunt.registerTask('dev', [
     'watch'
   ]);
-
+  grunt.registerTask('default', ['watch']);
 };
