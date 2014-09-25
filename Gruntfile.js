@@ -17,8 +17,8 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-          './vendor/bower/jquery/dist/jquery.min.js',
-          './vendor/bower/underscore/underscore-min.js',
+          './webapp/vendor/bower/jquery/dist/jquery.min.js',
+          './webapp/vendor/bower/underscore/underscore-min.js',
           './webapp/js/{,*/}*.js'
         ],
         dest: './emission_events/static/js/app.js',
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 
     sass: {
       options: {
-        loadPath: ['vendor/bower']
+        loadPath: ['webapp/vendor/bower']
       },
       dist: {
         files: {
