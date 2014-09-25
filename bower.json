@@ -1,0 +1,10 @@
+{
+  "name": "emission-events",
+  "private": true,
+  "dependencies": {
+     "newsapps-styles": "texastribune/newsapps-styles",
+     "jquery": "1.11.1",
+     "underscore": "1.7.0"
+  },
+  "devDependencies": {}
+}

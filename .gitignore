@@ -2,6 +2,9 @@
 *.py[co]
 *.egg*
 
+# Vendor
+/vendor
+
 # Node things
 node_modules
 
