@@ -4,7 +4,7 @@ from emissions.models import PageHTML, EmissionEvent, RequestAttempt,\
 
 
 class EmissionEventAdmin(admin.ModelAdmin):
-    list_display = ['tracking_number', 'type_of_emission', 'duration']
+    list_display = ['tracking_number', 'type_of_emission', 'duration', 'county']
     list_filter = ['type_of_emission', 'county']
     fieldsets = [
         ('Tracking Number', {'fields': ['tracking_number']}),

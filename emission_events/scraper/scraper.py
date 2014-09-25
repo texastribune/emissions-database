@@ -45,7 +45,7 @@ class Scraper(object):
             'began_date': began_date,
             'ended_date': ended_date,
             'duration':   self.get_duration(began_date, ended_date),
-            'type_of_emission': self.parameterize(tds[4].string)
+            'type_of_emission': self.parameterize(tds[4].string)[0:30]
         }
 
     def has_contaminants(self):
