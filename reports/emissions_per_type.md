@@ -2,7 +2,7 @@
 
 ## Emissions per type on 2014
 
-``` SQL
+```sql
     SELECT type_of_air_emissions_event AS emission_type, count(id)
     FROM emissions_emissionevent where began_date > '2014-01-01'
     GROUP BY type_of_air_emissions_event;
@@ -24,7 +24,7 @@
 
 ## Emissions per type on 2013
 
-``` SQL
+```sql
     SELECT type_of_air_emissions_event AS emission_type, count(id)
     FROM emissions_emissionevent where began_date > '2013-01-01'
     AND began_date < '2014-01-01'
@@ -55,7 +55,7 @@
 
 ## Contaminants per maintenance (2014)
 
-``` SQL
+```sql
 SELECT emissions_contaminantreleased.contaminant AS contaminant,
 COUNT(emissions_contaminantreleased.id)
 FROM emissions_contaminantreleased
@@ -121,7 +121,7 @@ GROUP BY emissions_contaminantreleased.contaminant;
 
 ## No emission estimation method (2014)
 
-``` SQL
+```sql
 SELECT COUNT(id)
 FROM emissions_emissionevent
 WHERE emissions_estimation_method = ''
@@ -134,7 +134,7 @@ WHERE emissions_estimation_method = ''
 
 ## No emission estimation method (2013)
 
-``` SQL
+```sql
 SELECT COUNT(id)
 FROM emissions_emissionevent
 WHERE emissions_estimation_method = ''
@@ -148,7 +148,7 @@ WHERE emissions_estimation_method = ''
 
 ## Contaminant by type of emission (2014)
 
-``` SQL
+```sql
 SELECT DISTINCT emissions_contaminantreleased.contaminant,
   emissions_emissionevent.type_of_air_emissions_event AS type_of_emission
 FROM emissions_contaminantreleased
