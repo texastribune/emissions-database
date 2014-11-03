@@ -31,9 +31,10 @@ class EmissionEventAdmin(admin.ModelAdmin):
                                 'emissions_estimation_method'
             ]})
     ]
+    ordening = 'tracking_number'
 
 class ContaminantReleasedAdmin(admin.ModelAdmin):
-    list_display = ['contaminant_parameterized', 'tracking_number', 'authorization']
+    list_display = ['contaminant_parameterized', 'tracking_number', 'amount_released_lbs']
     list_filter = ['contaminant_parameterized']
     fieldsets = [
         ('Curated', {'fields': [
@@ -51,12 +52,18 @@ class ContaminantReleasedAdmin(admin.ModelAdmin):
             'amount_released'
             ]})
     ]
+    ordening = 'tracking_number'
 
 class PageHTMLAdmin(admin.ModelAdmin):
     list_display = ['tracking_number']
+    ordening = 'tracking_number'
+
+class RequestAttemptAdmin(admin.ModelAdmin):
+    list_display = ['tracking_number']
+    ordening = 'tracking_number'
 
 
 admin.site.register(PageHTML, PageHTMLAdmin)
 admin.site.register(EmissionEvent, EmissionEventAdmin)
-admin.site.register(RequestAttempt)
+admin.site.register(RequestAttempt, RequestAttemptAdmin)
 admin.site.register(ContaminantReleased, ContaminantReleasedAdmin)
