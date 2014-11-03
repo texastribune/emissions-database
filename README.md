@@ -1,69 +1,29 @@
 # News Apps Django Template
 
+## Commands
 
-A custom template for News Apps Django projects. In a constant state of development.
+    psql -h 127.0.0.1 -U postgres -p 5433
+    pg_dump -h 127.0.0.1 -U postgres -p 5433 emissions_project > database.sql
+    psql emission_events < database.sql
 
-## Requirements
 
-- Django 1.7
-- `virtualenvwrapper`
-- Willingness to change this README to something that makes sense with your project post-generation
 
-## Getting started
+https://www.tceq.texas.gov/assets/public/comm_exec/agendas/comm/backup/Agendas/2014/9-24-2014/1447PST.pdf
 
-Please note – this guide assumes you are using OS X. If you aren't, you hopefully know the equivalent commands to make these things happen. If you don't, find someone to help you!
+http://www11.tceq.texas.gov/oce/ch/index.cfm?fuseaction=main.search&RequestTimeout=90&principalname=&rename=DOW%20TEXAS%20OPERATIONS%20FREEPORT&rern=&aid=&progid=&county=&region=&startdate=09/01/2006&endate=&principalid=&reid=203518192001135
 
-First, create the folder for you project.
+http://www2.tceq.texas.gov/oce/penenfac/index.cfm?fuseaction=home.details&rn=346523962013242
 
-```bash
-mkdir <folder-of-your-project>
-```
+http://www11.tceq.texas.gov/oce/ch/index.cfm?fuseaction=main.search&RequestTimeout=90&principalname=&rename=DOW%20TEXAS%20OPERATIONS%20FREEPORT&rern=&aid=&progid=&county=&region=&startdate=09/01/2006&endate=&principalid=&reid=203518192001135
 
-Then, create the virtual environment for your project.
+http://www.tceq.state.tx.us/assets/public/comm_exec/agendas/comm/marked/2014/140115.Mrk.pdf
 
-```bash
-mkvirtualenv <name-of-your-project>-dev
-```
+from 
+http://www2.tceq.texas.gov/oce/penenfac/index.cfm?fuseaction=home.details&rn=904547452014029
 
-Next, install Django.
+to 
+http://www7.tceq.state.tx.us/uploads/eagendas/Agendas/2014/9-24-2014/0158PWS.pdf
 
-```bash
-pip install django
-```
+https://www.tceq.texas.gov/assets/public/compliance/enforcement/enf_reports/AER/FY13/enfrptfy13.pdf
 
-You may need to re-initialize your virtual environment for autocomplete of Django commands. (`workon <name-of-your-project>-dev`)
-
-Now we're ready to start cookin'. (The name of your project doesn't have to be the same as the folder you created.)
-
-```bash
-django-admin startproject --template=https://github.com/texastribune/newsapps-django-template/archive/master.zip --extension=gitignore,html,py <name-of-your-project> <folder-of-your-project>
-```
-
-Jump into your newly created project folder, get `git` initialized, and make your first commit!
-
-```bash
-cd <folder-of-your-project>
-git init
-git add .
-git commit -m "Initial commit"
-```
-
-Now, install your local development requirements.
-
-```bash
-pip install -r requirements/local.txt
-```
-
-You should be able to run your first `migrate` now! Give it a try.
-
-```bash
-python <name-of-your-project>/manage.py migrate
-```
-
-And it should be able to handle `runserver` now, too.
-
-```bash
-python <name-of-your-project>/manage.py runserver
-```
-
-If everything checks out, you're good to go. Don't forget to replace this README!
+http://www11.tceq.state.tx.us/oce/eer/index.cfm?fuseaction=main.getDetails&target=205264
