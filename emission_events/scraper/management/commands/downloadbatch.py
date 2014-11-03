@@ -23,4 +23,5 @@ class Command(BaseCommand):
             options.get('initial'),
             options.get('final')
         )
-        HTMLGetter(url_builder)()
+        info = HTMLGetter(url_builder)()
+        print "Success: %i | Failed: %i" % (info['success'], info['failed'])

@@ -6,6 +6,10 @@ from scraper import Scraper
 class HTMLGetter(object):
     def __init__(self, url_builder):
         self.url_builder = url_builder
+        self.metadata = {
+            'failed': 0,
+            'success': 0
+        }
 
     def __call__(self):
         while not self.url_builder.is_finalized():
@@ -16,6 +20,7 @@ class HTMLGetter(object):
                 self.url_builder.current_tracking_number()
             )
             if downloader():
+                self.metadata['success'] += 1
                 page_html = downloader.page_html
                 scraper = Scraper(page_html.content, page_html.tracking_number)
                 emission_event_data = scraper.emission_event_data()
@@ -27,3 +32,6 @@ class HTMLGetter(object):
                     for contaminant_data in scraper.contaminants():
                         contaminant_data['emission_event'] = emission_event
                         ContaminantReleased.objects.create(**contaminant_data)
+            else:
+                self.metadata['failed'] += 1
+        return self.metadata

@@ -12,5 +12,11 @@ class Command(NoArgsCommand):
         initial = page.tracking_number
         final = initial + 100
 
+        print "Updating from %i to %i" % (initial, final)
+
         url_builder = URLBuilder(initial, final)
-        HTMLGetter(url_builder)()
+        info = HTMLGetter(url_builder)()
+
+        print "Success: %i | Failed: %i" % (info['success'], info['failed'])
+
+
