@@ -36,9 +36,9 @@ class Scraper(object):
             'based_on_the':                self.clean(tds[6].string, 50).upper(),
             'event_began':                 self.clean(tds[5].string, 30),
             'event_ended':                 self.clean(tds[7].string, 30),
-            'cause':                       self.clean(tds[8].string),
-            'action_taken':                self.clean(tds[9].string),
-            'emissions_estimation_method': self.clean(tds[10].string),
+            'cause':                       self.clean(tds[8].string, None),
+            'action_taken':                self.clean(tds[9].string, None),
+            'emissions_estimation_method': self.clean(tds[10].string, None),
 
             'city':       self.get_city(tds[3].string),
             'county':     self.get_county(tds[3].string),
@@ -73,6 +73,8 @@ class Scraper(object):
     def clean(self, cad, limit=200):
         if cad == None:
             return ''
+        elif limit == None:
+            return cad.strip()
         else:
             return cad.strip()[0:limit]
 
