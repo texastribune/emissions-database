@@ -4,3 +4,4 @@ beautifulsoup4
 inflection
 pytz
 whitenoise==1.0.3
+django-import-export==0.2.4
