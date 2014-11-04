@@ -1,5 +1,6 @@
 import urllib2
 import logging
+import socket
 from emissions.models import PageHTML, RequestAttempt
 
 logger = logging.getLogger('emissions_downloader')
@@ -28,7 +29,7 @@ class Downloader(object):
             logger.info("Getting %i (%s)" % (self.tracking_number, self.url))
             return True
 
-        except (urllib2.URLError, urllib2.HTTPError) as e:
+        except (urllib2.URLError, urllib2.HTTPError, socket.error) as e:
             self.store_attempt(str(e), failed=True)
             logger.error("Fail %i | %s" % (self.tracking_number, str(e)))
             return False
