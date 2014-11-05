@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<h1>Content</h1>
+
+<div id="search" class="search">
+  <div class="search-box">
+    <form id="search-form" action="/search" method="get">
+      <div class="form-group">
+        <label class="sr-only" for="address">Enter a regulated entity name</label>
+        <input id="address" placeholder="Shell" type="text">
+      </div>
+      <button id="submit-search" class="search-submit" type="submit">Search</button>
+    </form>
+  </div>
+</div>
 {% endblock %}
