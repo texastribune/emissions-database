@@ -6,6 +6,18 @@ class PageHTML(models.Model):
     content         = models.TextField()
 
 
+class RegulatedEntity(models.Model):
+    url = models.CharField(max_length=200)
+    regulated_entity_rn_number = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=200)
+    primary_business = models.CharField(max_length=200)
+    street_address = models.CharField(max_length=200)
+    county = models.CharField(max_length=30)
+    nearest_city = models.CharField(max_length=30)
+    nearest_zipcode = models.CharField(max_length=30)
+    physical_location = models.TextField()
+
+
 class EmissionEvent(models.Model):
     tracking_number = models.IntegerField(null=False,unique=True)
     dc_date_meta = models.CharField(max_length=20, null=True)
@@ -43,7 +55,7 @@ class EmissionEvent(models.Model):
 
     # Relations
     page_html = models.ForeignKey(PageHTML)
-    regulated_entity = models.ForeignKey(RegulatedEntity)
+    regulated_entity = models.ForeignKey(RegulatedEntity, default=None, null=True)
 
 
 class ContaminantReleased(models.Model):
@@ -74,24 +86,12 @@ class RequestAttempt(models.Model):
     failed = models.BooleanField(default=False)
 
 
-class RegulatedEntity(models.Model):
-    url = models.CharField(max_length=200)
-    regulated_entity_rn_number = models.CharField(max_length=30, unique=True)
-    name = models.CharField(max_length=200)
-    primary_business = models.CharField(max_length=200)
-    street_address = models.CharField(max_length=200)
-    county = models.CharField(max_length=30)
-    nearest_city = models.CharField(max_length=30)
-    nearest_zipcode = models.CharField(max_length=30)
-    physical_location = models.CharField(max_length=200)
-
-
 class REPermit(models.Model):
-    program = models.CharField(max_length=100)
-    id_type = models.CharField(max_length=30)
-    id_number = models.CharField(max_length=30)
-    status = models.CharField(max_length=30)
-    url = models.CharField(max_length=100)
+    program = models.CharField(max_length=200,null=True)
+    id_type = models.CharField(max_length=200,null=True)
+    id_number = models.CharField(max_length=200,null=True)
+    id_status = models.CharField(max_length=200,null=True)
+    url = models.CharField(max_length=200,null=True)
 
     # Flags
     proposed_enforcement_orders = models.BooleanField(default=False)
