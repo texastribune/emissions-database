@@ -43,6 +43,7 @@ class EmissionEvent(models.Model):
 
     # Relations
     page_html = models.ForeignKey(PageHTML)
+    regulated_entity = models.ForeignKey(RegulatedEntity)
 
 
 class ContaminantReleased(models.Model):
@@ -71,3 +72,32 @@ class RequestAttempt(models.Model):
     message = models.CharField(max_length=200)
     status_code = models.CharField(max_length=200)
     failed = models.BooleanField(default=False)
+
+
+class RegulatedEntity(models.Model):
+    url = models.CharField(max_length=200)
+    regulated_entity_rn_number = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=200)
+    primary_business = models.CharField(max_length=200)
+    street_address = models.CharField(max_length=200)
+    county = models.CharField(max_length=30)
+    nearest_city = models.CharField(max_length=30)
+    nearest_zipcode = models.CharField(max_length=30)
+    physical_location = models.CharField(max_length=200)
+
+
+class REPermit(models.Model):
+    program = models.CharField(max_length=100)
+    id_type = models.CharField(max_length=30)
+    id_number = models.CharField(max_length=30)
+    status = models.CharField(max_length=30)
+    url = models.CharField(max_length=100)
+
+    # Flags
+    proposed_enforcement_orders = models.BooleanField(default=False)
+    effective_enforcement_orders = models.BooleanField(default=False)
+    notice_of_violations = models.BooleanField(default=False)
+
+    # Relations
+    regulated_entity = models.ForeignKey(RegulatedEntity)
+
