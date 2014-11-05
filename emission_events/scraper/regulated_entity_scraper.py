@@ -16,24 +16,40 @@ class RegulatedEntityScraper(object):
         self.regulated_entity_url = response.geturl()
         self.html = response.read()
 
-        if self.regulated_entity_url.find('notfound') >= 0:
-            raise Exception("Regulated Entity not found")
 
     def get_values(self):
         output = {}
         soup = BeautifulSoup(self.html)
         return {
             'regulated_entity_rn_number': self.rn_number,
-            'regulated_entity_url': self.regulated_entity_url,
+            'url': self.regulated_entity_url,
             'name': self.get_name(soup),
             'primary_business': self.get_primary_business(soup),
             'street_address': self.get_street_address(soup),
             'county': self.get_county(soup),
             'nearest_city': self.get_nearest_city(soup),
             'nearest_zipcode': self.get_nearest_zipcode(soup),
-            'physical_location': self.get_physical_location(soup),
-            'permits': self.get_permits(soup)
+            'physical_location': self.get_physical_location(soup)
         }
+
+    def get_permits(self):
+        output = []
+        soup = BeautifulSoup(self.html)
+
+        for tr in self._get_permit_trs(soup)[1:-1]:
+            output.append(
+                {
+                    'program': self._get_program(tr),
+                    'id_type': self._get_id_type(tr),
+                    'id_number': self._get_id_number(tr),
+                    'id_status': self._get_id_status(tr),
+                    'url': self._get_url(tr)
+                }
+            )
+        return output
+
+    def has_page(self):
+        return self.regulated_entity_url.find('notfound') < 0
 
     def get_name(self, soup):
         return soup.find(id='reinfo').find_all('p')[1].contents[-1].strip()
@@ -55,20 +71,6 @@ class RegulatedEntityScraper(object):
 
     def get_physical_location(self, soup):
         return soup.find(id='geo_loc').find_all('p')[4].contents[-1].strip()
-
-    def get_permits(self, soup):
-        output = []
-        for tr in self._get_permit_trs(soup)[1:-1]:
-            output.append(
-                {
-                    'program': self._get_program(tr),
-                    'id_type': self._get_id_type(tr),
-                    'id_number': self._get_id_number(tr),
-                    'id_status': self._get_id_status(tr),
-                    'url': self._get_url(tr)
-                }
-            )
-        return output
 
     def _get_program(self, tr):
         if tr.find_all('td')[0].find('a'):
