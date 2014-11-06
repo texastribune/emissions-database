@@ -52,7 +52,10 @@ class RegulatedEntityScraper(object):
         return self.regulated_entity_url.find('notfound') < 0
 
     def get_name(self, soup):
-        return soup.find(id='reinfo').find_all('p')[1].contents[-1].strip()
+        if soup.find(id='reinfo').find_all('p')[1].find('a'):
+            return soup.find(id='reinfo').find_all('p')[1].contents[2].strip()
+        else:
+            return soup.find(id='reinfo').find_all('p')[1].contents[-1].strip()
 
     def get_primary_business(self, soup):
         return soup.find(id='reinfo').find_all('p')[2].contents[-1].strip()
