@@ -1,7 +1,8 @@
 class URLBuilder(object):
-    def __init__(self, initial, final=None):
+    def __init__(self, initial, final=None, ignore_list=[]):
         self.initial = initial
         self.current = initial - 1
+        self.ignore_list = ignore_list
         if final:
             self.final = final
         else:
@@ -9,7 +10,7 @@ class URLBuilder(object):
 
     def next(self):
         if not self.is_finalized():
-            self.current += 1
+            self.current = self._find_next(self.current)
             return self.current
         else:
             raise StopIteration("No more URLs")
@@ -25,3 +26,10 @@ class URLBuilder(object):
 
     def url(self, tracking_number):
         return "http://www11.tceq.texas.gov/oce/eer/index.cfm?fuseaction=main.getDetails&target=%i" % tracking_number
+
+    def _find_next(self, tmp):
+        tmp += 1
+        if tmp in self.ignore_list:
+            return self._find_next(tmp)
+        else:
+            return tmp
