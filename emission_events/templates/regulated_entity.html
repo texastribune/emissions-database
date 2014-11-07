@@ -1,3 +1,59 @@
 <div class="regulated-entity">
+  <ul>
+    <li>{{ regulated_entity.regulated_entity_rn_number }}</li>
+    <li>{{ regulated_entity.name }}</li>
+    <li>{{ regulated_entity.primary_business }}</li>
+    <li>{{ regulated_entity.county }}</li>
+    <li>{{ regulated_entity.nearest_city }}</li>
+    <li>{{ regulated_entity.nearest_zipcode }}</li>
+    <li>{{ regulated_entity.physical_location }}</li>
+    <li><a target="_blank" href="{{ regulated_entity.url }}">url</a></li>
+  </ul>
 
+  <h2>Emission Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Tracking Number</th>
+        <th>Type of emission</th>
+        <th>Event began</th>
+        <th>Event ended</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ev in regulated_entity.emissionevent_set.all %}
+        <tr>
+          <td>{{ ev.tracking_number }}</td>
+          <td>{{ ev.type_of_air_emissions_event }}</td>
+          <td>{{ ev.event_began }}</td>
+          <td>{{ ev.event_ended }}</td>
+          <td>{{ ev.duration }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h2>Permits</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Program</th>
+        <th>ID type</th>
+        <th>ID number</th>
+        <th>Status</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for permit in regulated_entity.repermit_set.all %}
+        <tr>
+          <td>{{ permit.program }}</td>
+          <td>{{ permit.id_type }}</td>
+          <td>{{ permit.id_number }}</td>
+          <td>{{ permit.id_status }}</td>
+          <td><a href="http://www15.tceq.texas.gov/crpub/{{ permit.url }}" target="_blank">Link</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
