@@ -21,10 +21,10 @@ SITE_DIR = os.path.dirname(BASE_DIR)
 #######################
 
 # https://docs.djangoproject.com/en/1.7/ref/settings/#debug
-DEBUG = False
+DEBUG = True
 
 # https://docs.djangoproject.com/en/1.7/ref/settings/#template-debug
-TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DEBUG = True
 
 
 ############################
