@@ -6,6 +6,29 @@
 
 <div class="results">
 Resultados
+
+<table>
+  <thead>
+    <tr>
+      <th>RN Number</th>
+      <th>Name</th>
+      <th>County</th>
+      <th>Nearest City</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for re in regulated_entities %}
+    <tr>
+      <td data-title="RN Number">{{ re.regulated_entity_rn_number }}</td>
+      <td data-title="Name">{{ re.name|truncatechars:15 }}</td>
+      <td data-title="Coiunty">{{ re.county }}</td>
+      <td data-title="Nearest City">{{ re.nearest_city }}</td>
+    </tr>
+  {% endfor %}
+
+
+  </tbody>
+</table>
 </div>
 
 {% endblock %}
