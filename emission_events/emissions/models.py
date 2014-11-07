@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -16,6 +17,9 @@ class RegulatedEntity(models.Model):
     nearest_city = models.CharField(max_length=30)
     nearest_zipcode = models.CharField(max_length=30)
     physical_location = models.TextField()
+
+    def get_absolute_url(self):
+        return reverse('entity_detail', kwargs={'pk': self.pk})
 
 
 class EmissionEvent(models.Model):
