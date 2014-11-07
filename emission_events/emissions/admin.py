@@ -1,6 +1,6 @@
 from django.contrib import admin
 from emissions.models import PageHTML, EmissionEvent, RequestAttempt,\
-                            ContaminantReleased, RegulatedEntity
+                            ContaminantReleased, RegulatedEntity, REPermit
 
 
 class EmissionEventAdmin(admin.ModelAdmin):
@@ -71,8 +71,14 @@ class RegulatedEntityAdmin(admin.ModelAdmin):
     list_filter = ['county']
 
 
+class REPermitAdmin(admin.ModelAdmin):
+    list_display = ['program', 'id_type', 'id_number', 'id_status']
+    list_filter = ['id_type', 'id_status']
+
+
 admin.site.register(PageHTML, PageHTMLAdmin)
 admin.site.register(EmissionEvent, EmissionEventAdmin)
 admin.site.register(RequestAttempt, RequestAttemptAdmin)
 admin.site.register(ContaminantReleased, ContaminantReleasedAdmin)
 admin.site.register(RegulatedEntity, RegulatedEntityAdmin)
+admin.site.register(REPermit, REPermitAdmin)
