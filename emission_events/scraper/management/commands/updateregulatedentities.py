@@ -8,7 +8,7 @@ logger = logging.getLogger('emissions_downloader')
 
 
 class Command(NoArgsCommand):
-    help = "Download the following 100 emission events."
+    help = "Download Regulated Entities."
     valid_emissions = [
         'air-shutdown',
         'air-startup',
