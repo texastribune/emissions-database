@@ -24,14 +24,9 @@ TEMPLATE_DEBUG = DEBUG
 
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'emission_events',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
+    'default': dj_database_url.config(
+        default='postgres://malev@localhost:5432/emission_events'
+    )
 }
 
 

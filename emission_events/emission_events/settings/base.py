@@ -3,7 +3,7 @@
 #################
 
 import os
-
+import dj_database_url
 
 ######################
 # PATH CONFIGURATION #
@@ -75,15 +75,11 @@ MIDDLEWARE_CLASSES = (
 ##########################
 
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+# https://github.com/kennethreitz/dj-database-url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'emission_events',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///{}'.format(os.path.join(BASE_DIR, 'default.db'))
+    )
 }
 
 #########################
