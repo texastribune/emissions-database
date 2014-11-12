@@ -62,7 +62,7 @@ class Command(NoArgsCommand):
 
     def _update_emissions_with(self, regulated_entity):
         emission_events = EmissionEvent.objects.\
-            filter(regulated_entity_rn_number='RN104198643',
+            filter(regulated_entity_rn_number=regulated_entity,
                    regulated_entity_id=None)
         for emission_event in emission_events:
             emission_event.regulated_entity = regulated_entity
