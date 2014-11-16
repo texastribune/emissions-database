@@ -1,0 +1,29 @@
+$bp: new-breakpoint(min-width 866px);
+$bp-table: new-breakpoint(max-width 480px);
+$bp-jump: new-breakpoint(max-width 600px);
+
+
+.explainer-box {
+  @include span-columns(12);
+  @include media($bp) {
+    @include span-columns(6);
+  }
+
+  margin-bottom: 1em;
+}
+
+.explainer-text {
+  @extend %prose;
+  background: $explainer-gray;
+  color: $bodytext-black;
+  font-family: $base-sans-serif;
+  font-weight: 300;
+  line-height: 1.3;
+  padding: 1em;
+}
+
+
+// Search Box
+.search-box {
+  margin-bottom: 1em;
+}

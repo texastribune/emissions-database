@@ -1,0 +1,24 @@
+<h1>County!</h1>
+
+<div>
+{% for emission_event in emission_events %}
+  {{emission_event.tracking_number}} | {{ emission_event.began_date }}<br />
+{% endfor %}
+</div>
+
+<div class="pagination">
+  <span class="step-links">
+    {% if emission_events.has_previous %}
+      <a href="?page={{ emission_events.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current">
+      Page {{ emission_events.number }} of {{ emission_events.paginator.num_pages }}.
+    </span>
+
+    {% if emission_events.has_next %}
+      <a href="?page={{ emission_events.next_page_number }}">next</a>
+    {% endif %}
+  </span>
+</div>
+
