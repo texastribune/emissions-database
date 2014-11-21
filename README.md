@@ -1,12 +1,24 @@
 # News Apps Django Template
 
+## Emission events type
+
+* air-shutdown
+* air-startup
+* emissions-event
+* emissions-event-emergency-resp
+* excess-opacity
+* maintenance
+
 ## Commands
 
     psql -h 127.0.0.1 -U postgres -p 5433
     pg_dump -h 127.0.0.1 -U postgres -p 5433 emissions_project > database.sql
     psql emission_events < database.sql
 
+## Backup
 
+    export DATABASE_URL=postgis://docker:docker@localhost:5433/emission_events
+    phd pg_dump > marcosdb-today.sql
 
 https://www.tceq.texas.gov/assets/public/comm_exec/agendas/comm/backup/Agendas/2014/9-24-2014/1447PST.pdf
 
