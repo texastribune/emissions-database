@@ -105,3 +105,19 @@ class REPermit(models.Model):
     # Relations
     regulated_entity = models.ForeignKey(RegulatedEntity)
 
+
+class IssuedOrder(models.Model):
+    docket_number = models.CharField(max_length=20, null=True, unique=True)
+    agenda_date = models.CharField(max_length=20, null=True)
+    penalty_amount = models.CharField(max_length=30, null=True)
+    summary = models.CharField(max_length=1000, null=True)
+    regulated_entity_rn_number = models.CharField(max_length=50)
+    docket_link = models.CharField(max_length=200, null=True)
+    commission_issued_order = models.CharField(max_length=200, null=True)
+
+    # curated fields
+    agended_at = models.DateField(db_index=True, null=True)
+    penalty_value = models.IntegerField(null=True)
+
+    # Relations
+    regulated_entity = models.ForeignKey(RegulatedEntity)
