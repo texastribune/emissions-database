@@ -1,6 +1,32 @@
-# News Apps Django Template
+# Emissions events database
+
+Scraper tools for the following databases:
+
+* [Air Emission Event Report Database](http://www11.tceq.state.tx.us/oce/eer/index.cfm?fuseaction=main.searchForm)
+* [Central Registry Query - Regulated Entity Search](http://www15.tceq.texas.gov/crpub/index.cfm?fuseaction=regent.RNSearch)
+* [Commission Issued Orders](http://www14.tceq.texas.gov/epic/CIO/)
+
+## Setup
+
+You will need python and some dependencies, a postgres database and that's it:
+
+    pip install -r requirements.txt
+    make setup
+
+And to start the party, you will need to populate the database. So far we have 4 different commands to start working:
+
+    python emission_events/manage.py COMMAND
+
+Where command can be:
+
+* `downloadbatch` to download a batch of emission events starting with `--initial`.
+* `updateemissions` will download 100 emissions from the last one stored in the database. If you run this command daily, you will always have the latest data on your system.
+* `updateregulatedentities` Regulated Entities don't change too ofter. But from time to time you can check wheather you have a new kid on the block.
+* `downloadissuedorders` will download the issued orders emited for every regulated entity on your database.
 
 ## Emission events type
+
+For now, we are only focusing on the following emission events:
 
 * air-shutdown
 * air-startup
