@@ -1,6 +1,7 @@
 from django.contrib import admin
 from emissions.models import PageHTML, EmissionEvent, RequestAttempt,\
-                            ContaminantReleased, RegulatedEntity, REPermit
+                            ContaminantReleased, RegulatedEntity, REPermit,\
+                            IssuedOrder
 
 
 class EmissionEventAdmin(admin.ModelAdmin):
@@ -76,9 +77,15 @@ class REPermitAdmin(admin.ModelAdmin):
     list_filter = ['id_type', 'id_status']
 
 
+class IssuedOrderAdmin(admin.ModelAdmin):
+    list_display = ['docket_number', 'regulated_entity_rn_number', 'agended_at', 'penalty_value']
+    ordening = ['agended_at', 'agended_at', 'penalty_value']
+
+
 admin.site.register(PageHTML, PageHTMLAdmin)
 admin.site.register(EmissionEvent, EmissionEventAdmin)
 admin.site.register(RequestAttempt, RequestAttemptAdmin)
 admin.site.register(ContaminantReleased, ContaminantReleasedAdmin)
 admin.site.register(RegulatedEntity, RegulatedEntityAdmin)
 admin.site.register(REPermit, REPermitAdmin)
+admin.site.register(IssuedOrder, IssuedOrderAdmin)
