@@ -8,8 +8,9 @@ Scraper tools for the following databases:
 
 ## Setup
 
-You will need python and some dependencies, a postgres database and that's it:
+You will need python, some dependencies, a postgres database and an environmental variable pointing to it and that's it:
 
+    export EMISSIONS_DATABASE="postgres://malev@localhost:5432/emission_events"
     pip install -r requirements.txt
     make setup
 
@@ -43,8 +44,14 @@ For now, we are only focusing on the following emission events:
 
 ## Backup
 
-    export DATABASE_URL=postgis://docker:docker@localhost:5433/emission_events
+    export EMISSIONS_DATABASE=postgres://malev@localhost/emission_events
     phd pg_dump > marcosdb-today.sql
+
+## Docker
+
+    docker build -t emissions .
+    EMISSIONS_DATABASE=postgres://malev@localhost:5433/emission_events\
+    docker run -e EMISSIONS_DATABASE --rm emissions
 
 ## References
 

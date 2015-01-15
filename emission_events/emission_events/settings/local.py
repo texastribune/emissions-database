@@ -25,7 +25,7 @@ TEMPLATE_DEBUG = DEBUG
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://malev@localhost:5432/emission_events'
+        default=os.environ.get('EMISSIONS_DATABASE')
     )
 }
 
