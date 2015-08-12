@@ -25,7 +25,7 @@ class URLBuilder(object):
         return self.current > self.final
 
     def url(self, tracking_number):
-        return "http://www11.tceq.texas.gov/oce/eer/index.cfm?fuseaction=main.getDetails&target=%i" % tracking_number
+        return "http://www2.tceq.texas.gov/oce/eer/index.cfm?fuseaction=main.getDetails&target=%i" % tracking_number
 
     def _find_next(self, tmp):
         tmp += 1
