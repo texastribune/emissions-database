@@ -5,4 +5,5 @@ ADD . /app/
 WORKDIR /app/
 RUN pip install -r requirements.txt
 
-CMD python emission_events/manage.py updateemissions
+RUN python emission_events/manage.py migrate
+CMD ["python", "emission_events/manage.py", "updateemissions"]
