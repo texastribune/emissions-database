@@ -7,7 +7,8 @@ python emission_events/manage.py migrate
 python emission_events/manage.py collectstatic --noinput
 
 # Run app
-exec gunicorn emission_events.settings.wsgi:application \
+cd emission_events
+exec gunicorn emission_events.wsgi:application \
   --workers 3 \
   --bind 0.0.0.0:8000 \
   "$@"
