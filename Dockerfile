@@ -18,5 +18,8 @@ ENV SECRET_KEY quux
 # Expose the port for Docker
 EXPOSE 8000
 
+COPY docker-entrypoint.sh /usr/src/app/emission_events
+WORKDIR /usr/src/app/emission_events
+
 # Production runs gunicorn served on port 8000
 ENTRYPOINT ["./docker-entrypoint.sh"]
