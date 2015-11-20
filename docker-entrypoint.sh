@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Migrations
-python manage.py migrate
+python emission_events/manage.py migrate
 
 # Collect static files
-python manage.py collectstatic --noinput
+python emission_events/manage.py collectstatic --noinput
 
 # Run app
 cd emission_events
