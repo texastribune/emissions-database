@@ -63,4 +63,5 @@ module.exports = function(grunt) {
     'watch'
   ]);
   grunt.registerTask('default', ['watch']);
+  grunt.registerTask('build', ['sass', 'concat']);
 };
