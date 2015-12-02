@@ -90,18 +90,10 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'file': {
+        'console': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'formatter': 'default',
-            'filename': os.path.join(SITE_DIR, 'logs/debug.log')
+            'class': 'logging.StreamHandler',
         },
-        'conversions': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'formatter': 'default',
-            'filename': os.path.join(SITE_DIR, 'logs/conversions.log')
-        }
     },
     'formatters': {
         'default': {
@@ -110,17 +102,17 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'handlers': ['file'],
+            'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True
         },
-        'emissions_downloader':{
-            'handlers': ['file'],
+        'emissions_downloader': {
+            'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
         },
         'conversions': {
-            'handlers': ['conversions'],
+            'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
         }

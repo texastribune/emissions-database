@@ -18,18 +18,6 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 
-##########################
-# DATABASE CONFIGURATION #
-##########################
-
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('EMISSIONS_DATABASE')
-    )
-}
-
-
 #######################
 # CACHE CONFIGURATION #
 #######################
