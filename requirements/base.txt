@@ -5,6 +5,5 @@ inflection
 pytz
 whitenoise==1.0.3
 mechanize==0.2.5
-django-debug-toolbar==1.2.2
 dj-database-url==0.3.0
 django-infoNavigator
