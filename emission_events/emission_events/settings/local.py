@@ -34,6 +34,6 @@ CACHES = {
 # DJANGO DEBUG TOOLBAR CONFIGURATION #
 ######################################
 
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
+# INSTALLED_APPS += (
+#     'debug_toolbar',
+# )
