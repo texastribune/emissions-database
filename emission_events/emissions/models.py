@@ -3,8 +3,8 @@ from django.db import models
 
 
 class PageHTML(models.Model):
-    tracking_number = models.IntegerField(null=False,unique=True)
-    content         = models.TextField()
+    tracking_number = models.IntegerField(null=False, unique=True)
+    content = models.TextField()
 
 
 class RegulatedEntity(models.Model):
@@ -23,7 +23,7 @@ class RegulatedEntity(models.Model):
 
 
 class EmissionEvent(models.Model):
-    tracking_number = models.IntegerField(null=False,unique=True)
+    tracking_number = models.IntegerField(null=False, unique=True)
     dc_date_meta = models.CharField(max_length=20, null=True)
     # Regulated entity name
     regulated_entity_name = models.CharField(max_length=30)
@@ -54,12 +54,13 @@ class EmissionEvent(models.Model):
     county = models.CharField(max_length=200, db_index=True, null=True)
     began_date = models.DateTimeField(db_index=True, null=True)
     ended_date = models.DateTimeField(db_index=True, null=True)
-    duration = models.FloatField(null=True) # in hours
+    duration = models.FloatField(null=True)  # in hours
     type_of_emission = models.CharField(max_length=30, db_index=True)
 
     # Relations
     page_html = models.ForeignKey(PageHTML)
-    regulated_entity = models.ForeignKey(RegulatedEntity, default=None, null=True)
+    regulated_entity = models.ForeignKey(
+        RegulatedEntity, default=None, null=True)
 
 
 class ContaminantReleased(models.Model):
@@ -91,11 +92,11 @@ class RequestAttempt(models.Model):
 
 
 class REPermit(models.Model):
-    program = models.CharField(max_length=200,null=True)
-    id_type = models.CharField(max_length=200,null=True)
-    id_number = models.CharField(max_length=200,null=True)
-    id_status = models.CharField(max_length=200,null=True)
-    url = models.CharField(max_length=200,null=True)
+    program = models.CharField(max_length=200, null=True)
+    id_type = models.CharField(max_length=200, null=True)
+    id_number = models.CharField(max_length=200, null=True)
+    id_status = models.CharField(max_length=200, null=True)
+    url = models.CharField(max_length=200, null=True)
 
     # Flags
     proposed_enforcement_orders = models.BooleanField(default=False)
