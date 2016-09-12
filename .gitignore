@@ -24,3 +24,6 @@ node_modules
 # Django things
 emission_events/media/
 emission_events/assets/
+
+# PostgreSQL things
+*.dump
