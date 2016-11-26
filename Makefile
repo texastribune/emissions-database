@@ -1,7 +1,8 @@
 APP=emissions_events
 
 local/db-fetch:
-	aws --profile newsapps s3 cp s3://emissions-postgres-exports/pg.dump pg.dump
+	# aws --profile newsapps s3 cp s3://emissions-postgres-exports/pg.dump pg.dump
+	aws s3 cp s3://emissions-postgres-exports/pg.dump pg.dump
 
 local/db-restore:
 	dropdb ${APP} --if-exists

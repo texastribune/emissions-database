@@ -1,5 +1,5 @@
 class URLBuilder(object):
-    def __init__(self, initial, final=None, ignore_list=[]):
+    def __init__(self, initial=0, final=None, ignore_list=[]):
         self.initial = initial
         self.current = initial - 1
         self.ignore_list = ignore_list
@@ -15,8 +15,11 @@ class URLBuilder(object):
         else:
             raise StopIteration("No more URLs")
 
-    def current_url(self):
-        return self.url(self.current)
+    def current_url(self, tracking_number=None):
+        if tracking_number:
+            return self.url(tracking_number)
+        else:
+            return self.url(self.current)
 
     def current_tracking_number(self):
         return self.current

@@ -13,7 +13,7 @@ logger_conversions = logging.getLogger('conversions')
 class Scraper(object):
     def __init__(self, html, tracking_number):
         self.html = html
-        self.soup = BeautifulSoup(html)
+        self.soup = BeautifulSoup(html, 'html.parser')
         self.tracking_number = tracking_number
         self.lbs_regex = re.compile(r"lbs$|lbs\s")
         self.float_regex = re.compile(r"(\d+\.\d+)|(\d+)")

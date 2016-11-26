@@ -2,6 +2,9 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 
+class UnsettledReport(models.Model):
+    tracking_number = models.IntegerField(null=False, unique=True)
+
 class PageHTML(models.Model):
     tracking_number = models.IntegerField(null=False, unique=True)
     content = models.TextField()
