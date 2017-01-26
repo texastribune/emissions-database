@@ -32,7 +32,7 @@ class EmissionEventAdmin(admin.ModelAdmin):
                                 'emissions_estimation_method'
             ]})
     ]
-    ordening = 'tracking_number'
+    ordering = 'tracking_number'
 
 
 class ContaminantReleasedAdmin(admin.ModelAdmin):
@@ -54,20 +54,20 @@ class ContaminantReleasedAdmin(admin.ModelAdmin):
             'amount_released'
             ]})
     ]
-    ordening = 'tracking_number'
+    ordering = 'tracking_number'
 
 
 class PageHTMLAdmin(admin.ModelAdmin):
     list_display = ['tracking_number']
-    ordening = 'tracking_number'
+    ordering = 'tracking_number'
 
 class UnsettledReportAdmin(admin.ModelAdmin):
     list_display = ['tracking_number']
-    ordening = 'tracking_number'
+    ordering = 'tracking_number'
 
 class RequestAttemptAdmin(admin.ModelAdmin):
     list_display = ['tracking_number']
-    ordening = 'tracking_number'
+    ordering = 'tracking_number'
 
 
 class RegulatedEntityAdmin(admin.ModelAdmin):
@@ -82,7 +82,7 @@ class REPermitAdmin(admin.ModelAdmin):
 
 class IssuedOrderAdmin(admin.ModelAdmin):
     list_display = ['docket_number', 'regulated_entity_rn_number', 'agended_at', 'penalty_value']
-    ordening = ['agended_at', 'agended_at', 'penalty_value']
+    ordering = ['agended_at', 'agended_at', 'penalty_value']
 
 
 admin.site.register(PageHTML, PageHTMLAdmin)
