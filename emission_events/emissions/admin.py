@@ -32,7 +32,7 @@ class EmissionEventAdmin(admin.ModelAdmin):
                                 'emissions_estimation_method'
             ]})
     ]
-    ordering = 'tracking_number'
+    ordering = ['tracking_number']
 
 
 class ContaminantReleasedAdmin(admin.ModelAdmin):
@@ -54,20 +54,20 @@ class ContaminantReleasedAdmin(admin.ModelAdmin):
             'amount_released'
             ]})
     ]
-    ordering = 'tracking_number'
+    ordering = ['tracking_number']
 
 
 class PageHTMLAdmin(admin.ModelAdmin):
     list_display = ['tracking_number']
-    ordering = 'tracking_number'
+    ordering = ['tracking_number']
 
 class UnsettledReportAdmin(admin.ModelAdmin):
     list_display = ['tracking_number']
-    ordering = 'tracking_number'
+    ordering = ['tracking_number']
 
 class RequestAttemptAdmin(admin.ModelAdmin):
     list_display = ['tracking_number']
-    ordering = 'tracking_number'
+    ordering = ['tracking_number']
 
 
 class RegulatedEntityAdmin(admin.ModelAdmin):
