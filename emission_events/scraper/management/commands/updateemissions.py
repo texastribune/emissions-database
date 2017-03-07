@@ -10,7 +10,7 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         page = PageHTML.objects.order_by('-tracking_number')[0]
         initial = page.tracking_number
-        final = initial + 300
+        final = initial + 200
 
         print "Updating from %i to %i" % (initial, final)
 
@@ -18,3 +18,14 @@ class Command(NoArgsCommand):
         info = HTMLGetter(url_builder)()
 
         print "Success: %i | Failed: %i" % (info['success'], info['failed'])
+
+        page = PageHTML.objects.order_by('tracking_number')[0]
+        earliest = page.tracking_number
+        lookback = earliest - 300
+
+        if lookback > 0:
+            url_builder = URLBuilder(lookback, earliest)
+            info = HTMLGetter(url_builder)()
+
+            print "Success: %i | Failed: %i" % (
+                info['success'], info['failed'])
